@@ -14,14 +14,14 @@ class CreateAddingOwnerAddressAndFirstExerciseMissesTable extends Migration
     public function up()
     {
         Schema::table('owners', function (Blueprint $table) {
-            $table->string("first_name", 50);
-            $table->string("last_name", 50);
-            $table->string("telephone", 14);
-            $table->string("email", 150);
-            $table->string("address_1", 255);
+            $table->string("first_name", 50)->nullable();
+            $table->string("last_name", 50)->nullable();
+            $table->string("telephone", 14)->nullable();
+            $table->string("email", 150)->nullable();
+            $table->string("address_1", 255)->nullable();
             $table->string("address_2", 255)->nullable();
-            $table->string("town", 100);
-            $table->string("postcode", 255);
+            $table->string("town", 100)->nullable();
+            $table->string("postcode", 255)->nullable();
 
         });
     }
