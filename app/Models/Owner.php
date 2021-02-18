@@ -64,9 +64,8 @@ class Owner extends Model
         // return $userEmail === $email ? true : false;
 
         // if (Owner::all()->pluck('email') === $email);
-
-    
     }
+
 
 }
 

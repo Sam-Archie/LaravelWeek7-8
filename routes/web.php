@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OwnerController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Owner;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get("/owners", [OwnerController::class, "index"]);
+
+
+Route::get('/', [HomeController::class, "index"]);
+
+
+Route::get("/owners/{owner}", [OwnerController::class, "show"]);
