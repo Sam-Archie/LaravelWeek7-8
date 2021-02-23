@@ -1,9 +1,13 @@
 <?php
 
+use App\Models\Owner;
+use Doctrine\DBAL\Driver\Middleware;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OwnerController;
-use Illuminate\Support\Facades\Route;
-use App\Models\Owner;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,10 +20,32 @@ use App\Models\Owner;
 |
 */
 
-Route::get("/owners", [OwnerController::class, "index"]);
 
 
 Route::get('/', [HomeController::class, "index"]);
 
+Route::get("/login", [HomeController::class, "login"]);
 
-Route::get("/owners/{owner}", [OwnerController::class, "show"]);
+Route::get('/logout', [LoginController::class, "logout"]);
+
+    Route::group(["prefix" => "owners"], function () {
+        
+        Route::get("/", [OwnerController::class, "index"]);
+
+        Route::get("{owner}", [OwnerController::class, "show"]);
+
+        Route::group(["middleware" => "auth"], function () {
+
+            Route::get("form" , [OwnerController::class, "create"]);
+
+            Route::post("form", [OwnerController::class, "createPost"]);
+
+            Route::post("update/{owner}", [OwnerController::class, "updateOwner"]);
+        });
+});
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes(["register" => false]);
+

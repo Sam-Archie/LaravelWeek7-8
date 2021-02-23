@@ -58,19 +58,14 @@ class Owner extends Model
         return "Yes we have {$number} bananas";
     }
 
-    public static function doesEmailExist($email)
+    public static function doesEmailExist(string $email) : bool
     {
-        // $userEmail = Owner::all()->pluck('email');
-        // return $userEmail === $email ? true : false;
-
-        // if (Owner::all()->pluck('email') === $email);
-    }
-
-
+        return Owner::where('email', $email)->exists();
+    }  
 }
 
-// $partOne = Str::of($phoneNumber)->substr(3);
-// $partTwo = Str::of($phoneNumber)->substr(4, 6);
-// $partThree = Str::of($phoneNumber)->substr(7, 10);
-
-// return "{$partOne} {$partTwo} {$partThree}";
+// $userEmails = Owner::all()->pluck('email');
+// foreach($userEmails as $userEmail)
+// {
+//     return $userEmail === $email ? true : false;
+// }

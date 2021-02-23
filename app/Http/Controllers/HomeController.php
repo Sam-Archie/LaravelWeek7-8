@@ -8,17 +8,20 @@ use Carbon\Carbon;
 
 class HomeController extends Controller
 {
+
+
     public function timeOfDay()
     {
         $time = date("H");
-        if ($time < 12){
+        if ($time < 12) {
             return "Morning"; 
-        } else if ($time < 18){
+        } else if ($time < 18) {
             return "Afternoon";
         } else {
             return "Evening";
         }
     }
+
 
     public function index()
     {
@@ -26,4 +29,12 @@ class HomeController extends Controller
 
         return view("welcome", ["greeting" => $greeting]);
     }
+
+    public function login()
+    {
+        view("login");
+        
+        return redirect("/");
+    }
+
 }

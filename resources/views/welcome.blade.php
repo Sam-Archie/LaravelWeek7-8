@@ -5,6 +5,6 @@
     <h1>Welcome</h1>
 @endsection
 
-@section("content")
+@section("main")
     <p>{{$greeting}}</p>
 @endsection
