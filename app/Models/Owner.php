@@ -61,11 +61,11 @@ class Owner extends Model
     public static function doesEmailExist(string $email) : bool
     {
         return Owner::where('email', $email)->exists();
-    }  
+    } 
+
+    public function animals()
+    {
+        return $this->hasMany(Animal::class);
+    } 
 }
 
-// $userEmails = Owner::all()->pluck('email');
-// foreach($userEmails as $userEmail)
-// {
-//     return $userEmail === $email ? true : false;
-// }

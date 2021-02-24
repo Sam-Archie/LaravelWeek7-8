@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\OwnerController;
+use App\Http\Controllers\API\Owners\AnimalController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -34,5 +35,24 @@ Route::group(["prefix" => "owners"], function () {
         Route::put("/", [OwnerController::class, "update"]);
 
         Route::delete("/", [OwnerController::class, "destroy"]);
+
+    Route::group(["prefix" => "animals"], function () {
+
+        Route::get("/", [AnimalController::class, "index"]);
+
+        Route::put("/", [AnimalController::class, "store"]);
+
+        Route::group(["prefix" => "{animal}", "middleware" => "check.owner"], function () {
+
+            Route::get("/", [AnimalController::class, "show"]);
+
+            Route::put("/", [AnimalController::class, "update"]);
+
+            Route::delete("/", [AnimalController::class, "destroy"]);
+            
+        });  
+    });  
+
     });
 });
+

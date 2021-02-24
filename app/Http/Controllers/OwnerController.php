@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Owner;
-use App\Http\Requests\OwnerRequest;
+use App\Http\Requests\API\OwnerRequest;
 
 class OwnerController extends Controller
 {

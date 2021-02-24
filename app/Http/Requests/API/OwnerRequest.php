@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\API;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -23,15 +23,15 @@ class OwnerRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+         return [
             "first_name" => ["required", "string", "max:100"],
             "last_name"  => ["required", "string", "max:100"], 
             "telephone"  => ["required", "string", "max:20"], 
-            "email" => ["required", "string", "max:100",],
+            "email" => ["required", "string", "max:100"],
             "address_1" => ["required", "string", "max:100"],
             "address_2" => ["string", "max:100", "nullable"], 
             "town"  => ["required", "string", "max:100"],
             "postcode"  => ["required", "string", "max:10"]
         ];
-    }
+}
 }

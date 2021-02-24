@@ -5,7 +5,10 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Owner;
-use App\Http\Requests\OwnerRequest;
+use App\Http\Requests\API\OwnerRequest;
+use App\Http\Resources\API\OwnerResource;
+
+
 
 class OwnerController extends Controller
 {
@@ -29,7 +32,10 @@ class OwnerController extends Controller
     {
         $data = $request->all();
 
-        return Owner::create($data);
+        $owner = Owner::create($data);
+      
+        return new OwnerResource($owner);
+
     }
 
     /**
@@ -40,7 +46,7 @@ class OwnerController extends Controller
      */
     public function show(Owner $owner)
     {
-        return $owner;
+        return new OwnerResource($owner);
     }
 
     /**
@@ -50,13 +56,13 @@ class OwnerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Owner $owner)
+    public function update(OwnerRequest $request, Owner $owner)
     {
         $data = $request->all();
 
         $owner->fill($data)->save();
 
-        return $owner;
+        return new OwnerResource($owner);
     }
 
     /**
