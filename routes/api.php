@@ -28,31 +28,31 @@ Route::group(["prefix" => "owners"], function () {
 
     Route::post("/", [OwnerController::class, "store"]);
 
-    Route::group(["prefix" => "{owner}"], function () {
 
-        Route::get("/", [OwnerController::class, "show"]);
+        Route::group(["prefix" => "{owner}"], function () {
 
-        Route::put("/", [OwnerController::class, "update"]);
+            Route::get("/", [OwnerController::class, "show"]);
 
-        Route::delete("/", [OwnerController::class, "destroy"]);
+            Route::put("/", [OwnerController::class, "update"]);
 
-    Route::group(["prefix" => "animals"], function () {
+            Route::delete("/", [OwnerController::class, "destroy"]);
 
-        Route::get("/", [AnimalController::class, "index"]);
 
-        Route::put("/", [AnimalController::class, "store"]);
+                Route::group(["prefix" => "animals"], function () {
 
-        Route::group(["prefix" => "{animal}", "middleware" => "check.owner"], function () {
+                    Route::get("/", [AnimalController::class, "index"]);
 
-            Route::get("/", [AnimalController::class, "show"]);
+                    Route::post("/", [AnimalController::class, "store"]);
 
-            Route::put("/", [AnimalController::class, "update"]);
+                        Route::group(["prefix" => "{animal}", "middleware" => "check.owner"], function () {
+                            
+                            Route::get("/", [AnimalController::class, "show"]);
 
-            Route::delete("/", [AnimalController::class, "destroy"]);
-            
+                            Route::put("/", [AnimalController::class, "update"]);
+
+                            Route::delete("/", [AnimalController::class, "destroy"]);
+            });  
         });  
-    });  
-
     });
 });
 

@@ -34,9 +34,11 @@ class AnimalController extends Controller
 
         $animal = new Animal($data);
 
-        $animal->owner->associate($owner);
+        $animal->owner()->associate($owner);
 
         $animal->save();
+
+        $animal->setTreatments($request->get("treatments"));
       
         return new AnimalResource($animal);
 
@@ -65,6 +67,8 @@ class AnimalController extends Controller
         $data = $request->all();
 
         $animal->fill($data);
+
+        $animal->setTreatments($request->get("treatments"));
 
         $animal->save();
 

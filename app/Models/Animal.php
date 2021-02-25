@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Owner;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Animal extends Model
 {
@@ -11,7 +12,7 @@ class Animal extends Model
 
     public function owner()
     {
-        $this->belongsTo(Owner::class);
+        return $this->belongsTo(Owner::class);
     }
 
     public function dangerous()
@@ -19,4 +20,17 @@ class Animal extends Model
         return $this->biteyness >= 3;   
     }
 
+    public function treatments()
+    {
+        return $this->belongsToMany(Treatment::class);
+    }
+
+    public function setTreatments(array $string) : Animal
+    {
+        $treatments = Treatment::fromStrings($string);
+
+        $this->treatments()->sync($treatments->pluck("id"));
+
+        return $this;
+    }
 }

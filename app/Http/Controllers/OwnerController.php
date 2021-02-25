@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Owner;
+use Illuminate\Http\Request;
+use Auth;
 use App\Http\Requests\API\OwnerRequest;
 
 class OwnerController extends Controller
 {
+    
     public function index()
     {
         $ownerList = Owner::paginate(5);
@@ -21,6 +23,7 @@ class OwnerController extends Controller
 
     public function create()
     {
+        
         return view("form");
     }
 

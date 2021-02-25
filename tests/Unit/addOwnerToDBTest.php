@@ -22,7 +22,7 @@ class AddOwnerToDBTest extends TestCase
         parent::setUp();
 
         $this->owner = new Owner([
-            "first_name" => "Jamie", "last_name" => "XX", "telephone" => "02074564892", "email" => "jamiexx@XL.com", "address_1" => "103", "address_2" => "Stoke Newington High Street", "town" => "London","postcode" => "N16 423"
+            "first_name" => "Jamie", "last_name" => "XX", "telephone" => "02074564892", "email" => "jamiexx@XL.com", "address_1" => "103", "address_2" => "Stoke Newington High Street", "town" => "London", "postcode" => "N16 423"
         ]);
     }
 

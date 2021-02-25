@@ -21,6 +21,7 @@ use App\Http\Controllers\Auth\LoginController;
 */
 
 
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/', [HomeController::class, "index"]);
 
@@ -28,24 +29,22 @@ Route::get("/login", [HomeController::class, "login"]);
 
 Route::get('/logout', [LoginController::class, "logout"]);
 
-    Route::group(["prefix" => "owners"], function () {
+Route::group(["prefix" => "owners"], function () {
+    
+    Route::get("/", [OwnerController::class, "index"]);
+     
+    Route::group(["middleware" => "auth"], function () {
         
-        Route::get("/", [OwnerController::class, "index"]);
-
-        Route::get("{owner}", [OwnerController::class, "show"]);
-
-        Route::group(["middleware" => "auth"], function () {
-
-            Route::get("form" , [OwnerController::class, "create"]);
-
-            Route::post("form", [OwnerController::class, "createPost"]);
-
-            Route::post("update/{owner}", [OwnerController::class, "updateOwner"]);
-        });
+        Route::get("form", [OwnerController::class, "create"]);
+        
+        Route::post("form", [OwnerController::class, "createPost"]);
+        
+        Route::post("update/{owner}", [OwnerController::class, "updateOwner"]);
+    });
+    
+    Route::get("{owner}", [OwnerController::class, "show"]);
 });
 
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes(["register" => false]);
 
