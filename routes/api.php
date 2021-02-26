@@ -21,7 +21,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-
 Route::group(["prefix" => "owners"], function () {
 
     Route::get("/", [OwnerController::class ,"index"]);

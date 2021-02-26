@@ -7,32 +7,33 @@ use App\Models\User;
 use App\Models\Owner;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Testing\Assert;
 
-class LoginTest extends TestCase
-{
-    /**
-     * A basic unit test example.
-     *
-     * @return void
-     */
+use function PHPUnit\Framework\assertTrue;
 
-     private $user;
+// class LoginTest extends TestCase
+// {
+//     /**
+//      * A basic unit test example.
+//      *
+//      * @return void
+//      */
 
-     public function setUp()
-     {
-        $this->user = new User();
+//     use RefreshDatabase;
+    
+//     private $user;
 
+//      public function setUp() : void
+//      {
+//          parent::setUp();
+ 
+//          $this->user = User::Create(['name' => 'John', 'email' => 'me@gmail.com', 'password' => 'right']);
+//      }
 
-     }
+//      public function test__user_is_logged_in()
+//      {
+//         assertTrue(Auth::login($this->user));
+//      }
 
-
-    public function test__user_is_loggged_in()
-    {
-        $user = new User();
-
-        Auth::attempt(['username' => 'me', 'password' => 'right']);
-        $this->assertTrue(Auth::check());
-    }
-
-
-}
+// }
